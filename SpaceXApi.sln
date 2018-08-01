@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceXApi", "SpaceXApi\SpaceXApi.csproj", "{5DB708F3-8458-4193-AC10-0601CA1D778A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceXUnitTests", "..\SpaceXUnitTests\SpaceXUnitTests\SpaceXUnitTests.csproj", "{AB10225E-C6F2-4FC2-B366-615E825920EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceXUnitTests", "SpaceXUnitTests\SpaceXUnitTests\SpaceXUnitTests.csproj", "{3B51E8D1-F9EE-4BF0-A4B0-054F07879D36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{5DB708F3-8458-4193-AC10-0601CA1D778A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DB708F3-8458-4193-AC10-0601CA1D778A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DB708F3-8458-4193-AC10-0601CA1D778A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB10225E-C6F2-4FC2-B366-615E825920EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB10225E-C6F2-4FC2-B366-615E825920EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB10225E-C6F2-4FC2-B366-615E825920EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB10225E-C6F2-4FC2-B366-615E825920EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B51E8D1-F9EE-4BF0-A4B0-054F07879D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B51E8D1-F9EE-4BF0-A4B0-054F07879D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B51E8D1-F9EE-4BF0-A4B0-054F07879D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B51E8D1-F9EE-4BF0-A4B0-054F07879D36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
