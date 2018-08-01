@@ -16,7 +16,11 @@ namespace SpaceXApi.Controllers
         static HttpClient client = new HttpClient();
         private readonly IConfiguration _configuration;
 
-        public ValuesController(IConfiguration configuration) => _configuration = configuration;
+        public ValuesController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
 
         // GET api/values
         [HttpGet]
@@ -64,7 +68,9 @@ namespace SpaceXApi.Controllers
         public async Task<IEnumerable<LaunchpadModel>> GetAllLaunchPadByStatus(string status)
         {
             string launchpadData = null;
-            HttpResponseMessage response = await client.GetAsync(_configuration["SiteConfig"]);
+            // Hard coded this Uri so that the test can run but normally we would pull a location out of the appsettings
+            // or config file so that this can be scaled in multiple locations as needed. 
+            HttpResponseMessage response = await client.GetAsync("https://api.spacexdata.com/v2/launchpads");
             if (response.IsSuccessStatusCode)
             {
                 launchpadData = await response.Content.ReadAsStringAsync();
