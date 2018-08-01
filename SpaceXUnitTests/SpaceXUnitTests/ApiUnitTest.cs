@@ -19,11 +19,11 @@ namespace SpaceXUnitTests
     {
  
         [Fact]
-        public async Task WebApiTest()
+        public async Task WebApiTestForUnderConstruction()
         {
             // Arrange
-            var mockRepo = new Mock<IConfiguration>();
-            var newController = new ValuesController(mockRepo.Object);
+            var mock = new Mock<IConfiguration>();
+            var newController = new ValuesController(mock.Object);
 
             // This test will have issues with changing data but for the current demostration purposes it works. 
 
@@ -32,6 +32,21 @@ namespace SpaceXUnitTests
  
             //Assert
             Assert.Equal("stls", returnData.First().Id);
+        }
+        [Fact]
+        public async Task WebApiTestForUnderConstructionFalse()
+        {
+            // Arrange
+            var mock = new Mock<IConfiguration>();
+            var newController = new ValuesController(mock.Object);
+
+            // This test will have issues with changing data but for the current demostration purposes it works. 
+
+            //Act 
+            IEnumerable<LaunchpadModel> returnData = await newController.GetAllLaunchPadByStatus("under construction");
+
+            //Assert
+            Assert.NotEqual("BlahBlahBlah", returnData.First().Id);
         }
     }
 }
