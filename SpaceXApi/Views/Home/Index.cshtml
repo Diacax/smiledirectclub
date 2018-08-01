@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@using System.Net.Http
+@using Microsoft.Extensions.Configuration
+@using SpaceXApi.Controllers
+@using SpaceXApi.Models
+@model SpaceXApi.Models.LaunchpadModel
+
+<html>
+<head>
+    <title> Api For Space X -- SmileDirectClub</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<h2>Smile Direct Club -- Space X</h2>
+
+<form>
+    <select id="selectType">
+        <option selected="True"> --Select API Type--</option>
+        <option value="launchpads">All</option>
+        <option value="launchpadId">By Id</option>
+        <option value="launchpadStatus">By Status</option>
+    </select>
+
+    <select id="launchpads" style="display: none">
+        <option value="All"> All</option>
+    </select>
+    <select id="launchpadId" style="display: none">
+        <option value="All"> All</option>
+    </select>
+    <select id="launchpadStatus" style="display: none">
+        <option value="All"> All</option>
+    </select>
+
+    <input type="text" id="urlText" style="width: 200px"/>
+</form>
+
+<textarea id="jsonData" style="width: 800px; height: 800px"></textarea>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            // data: source,
+            url: 'api/values/', // url of Api controller not mvc
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#launchpads").append(new Option(data[i]["fullName"], data[i]["fullName"]));
+                    $("#launchpadId").append(new Option(data[i]["id"], data[i]["id"]));
+
+
+                    var optionExists = ($('#launchpadStatus option[value="' + data[i]["status"] + '"]').length > 0);
+
+                    if(!optionExists)
+                    {
+                        $("#launchpadStatus").append(new Option(data[i]["status"], data[i]["status"]));;
+                    }
+                }
+            },
+            error: function () {
+                alert('erere');
+            }
+        });
+        return false;
+    });
+
+    $("#selectType").on('change', function() {
+        if ($(this).val() == 'launchpads') {
+            document.getElementById("urlText").value = 'api/values/'; 
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                // data: source,
+                url: 'api/values/', // url of Api controller not mvc
+                success: function (data) {
+                    document.getElementById("jsonData").value = JSON.stringify(data);
+                },
+                error: function () {
+                    alert('erere');
+                }
+            });
+            return false;
+        } else if ($(this).val() == 'launchpadId') {
+            $("#launchpadId").show();
+            $("#launchpadStatus").hide();
+        } else if ($(this).val() == 'launchpadStatus') {
+            $("#launchpadStatus").show();
+            $("#launchpadId").hide();
+        }
+    });
+
+    $("#launchpadId").on('change', function () {
+        var selectedItem = $("#launchpadId option:selected").text();
+        document.getElementById("urlText").value = 'api/values/' + selectedItem; 
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            // data: source,
+            url: 'api/values/' + selectedItem, // url of Api controller not mvc
+            success: function (data) {
+                document.getElementById("jsonData").value = JSON.stringify(data);
+            },
+            error: function () {
+                alert('erere');
+            }
+        });
+        return false;
+    });
+
+
+    $("#launchpadStatus").on('change', function () {
+        var selectedItem = $("#launchpadStatus option:selected").text();
+        document.getElementById("urlText").value = 'api/values/bystatus/' + selectedItem; 
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            // data: source,
+            url: 'api/values/bystatus/' + selectedItem, // url of Api controller not mvc
+            success: function (data) {
+                document.getElementById("jsonData").value = JSON.stringify(data);
+            },
+            error: function () {
+                alert('erere');
+            }
+        });
+        return false;
+    });
+</script>
+
+</body>
+</html>
